@@ -6,3 +6,9 @@ def is_power_of_two(n,count):
             return is_power_of_two(n/2, count+1)
         else:
             return False
+parity_position = []
+code = list(input("enter the code:"))
+code = [int(x) for x in code]
+for i in range(len(code)):
+    if is_power_of_two(i, 0):
+        parity_position.append(i)
