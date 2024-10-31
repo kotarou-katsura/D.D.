@@ -9,9 +9,13 @@ class Hamming:
         self.list_parity_positions()
         self.find_parity_value()
 
+
     def get_code(self):
         self.code = list(input("enter the code:"))
         self.code = [int(x) for x in self.code]
+        if len(self.code)!=16:
+            print("the length is not valid!")
+            self.get_code();
 
     def list_parity_positions(self):
         for i in range(len(self.code)):
@@ -47,6 +51,7 @@ class Hamming:
                 else:
                     self.code[i] = 0
             print(self.code[i], end="")
+
 
 def is_parity(n):
     if n == 1:
