@@ -1,23 +1,43 @@
-def is_power_of_two(n,count):
+
+class Hamming:
+    def __init__(self):
+        self.get_code()
+        self.parity_value = []
+        self.parity_position = []
+        self.list_parity_positions()
+        self.find_parity_value()
+
+    def get_code(self):
+        self.code = list(input("enter the code:"))
+        self.code = [int(x) for x in self.code]
+
+    def list_parity_positions(self):
+        for i in range(len(self.code)):
+            if is_parity(i):
+                self.parity_position.append(i)
+
+    def print_parity(self):
+        for i in range(len(self.parity_position)):
+            print(f"p{pow(2,i)} = {self.parity_value[i]}")
+
+    def find_parity_value(self):
+        for parity in self.parity_position:
+            value = 0
+            for i in range(parity - 1, len(self.code), 2 * parity):
+                for j in range(0, parity):
+                    value += self.code[j + i]
+            self.parity_value.append((value - self.code[parity - 1]) % 2)
+
+
+def is_parity(n):
     if n == 1:
         return True
-    elif n > 0:
+    if n > 0:
         if n % 2 == 0:
-            return is_power_of_two(n/2, count+1)
+            return is_parity(n / 2)
         else:
             return False
-parity_position = []
-parity_value = []
-code = list(input("enter the code:"))
-code = [int(x) for x in code]
-for i in range(len(code)):
-    if is_power_of_two(i, 0):
-        parity_position.append(i)
-for parity in parity_position:
-    value = 0
-    for i in range(parity-1, len(code), 2*parity):
-        for j in range(0, parity):
-            value += code[j+i]
-    parity_value.append((value-code[parity-1]) % 2)
-for i in range(len(parity_position)):
-    print(f"p{i+1} = {parity_value[i]}")
+    else:
+        return False
+h1=Hamming()
+h1.print_parity()
