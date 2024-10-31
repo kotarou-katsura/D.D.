@@ -19,3 +19,5 @@ for parity in parity_position:
         for j in range(0, parity):
             value += code[j+i]
     parity_value.append((value-code[parity-1]) % 2)
+for i in range(len(parity_position)):
+    print(f"p{i+1} = {parity_value[i]}")
