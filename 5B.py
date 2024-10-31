@@ -7,8 +7,15 @@ def is_power_of_two(n,count):
         else:
             return False
 parity_position = []
+parity_value = []
 code = list(input("enter the code:"))
 code = [int(x) for x in code]
 for i in range(len(code)):
     if is_power_of_two(i, 0):
         parity_position.append(i)
+for parity in parity_position:
+    value = 0
+    for i in range(parity-1, len(code), 2*parity):
+        for j in range(0, parity):
+            value += code[j+i]
+    parity_value.append((value-code[parity-1]) % 2)
